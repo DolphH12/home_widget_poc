@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="center_vertical"
+    android:background="@android:color/white">
+
+    <!-- Temporizador Circular -->
+    <ProgressBar
+        android:id="@+id/progress_timer"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:max="100"
+        android:progress="100"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/progress_bar_custom"
+        android:layout_marginEnd="10dp" />
+
+    <!-- Texto Secreto -->
+    <TextView
+        android:id="@+id/text_secret"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="******"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:gravity="center_vertical"
+        android:layout_marginEnd="8dp"/>
+
+    <!-- Botón de Mostrar/Ocultar -->
+    <ImageButton
+        android:id="@+id/btn_visibility"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_visibility_off"
+        android:background="?android:selectableItemBackground"
+        android:contentDescription="Mostrar texto"
+        android:layout_marginEnd="8dp"/>
+
+    <!-- Botón de Copiar -->
+    <ImageButton
+        android:id="@+id/btn_copy"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_copy"
+        android:background="?android:selectableItemBackground"
+        android:contentDescription="Reiniciar temporizador"/>
+</LinearLayout>
