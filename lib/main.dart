@@ -1,3 +1,4 @@
+//import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/services.dart';
 
 const MethodChannel platform =
     MethodChannel('com.example.home_widget_poc/channel');
+//const MethodChannel _channel = MethodChannel('home_widget_channel');
 
 Future<void> main() async {
   runApp(const MainApp());
@@ -14,6 +16,14 @@ Future<void> main() async {
       Map<String, dynamic> secretText =
           await fetchSecretText(); // 🔥 Aquí llamas al servicio
       return secretText;
+    }
+    return null;
+  });
+  platform.setMethodCallHandler((call) async {
+    if (call.method == "fetchMessage") {
+      Map<String, dynamic> secretText =
+          await fetchSecretText(); // 🔥 Aquí llamas al servicio
+      return secretText['code'];
     }
     return null;
   });
@@ -29,14 +39,6 @@ Future<Map<String, dynamic>> fetchSecretText() async {
     "time": timeAleatorio,
   };
 }
-
-// @pragma('vm:entry-point')
-// Future<void> interactiveCallback(Uri? uri) async {
-//   // We check the host of the uri to determine which action should be triggered.
-//   if (uri?.host == 'update') {
-//     update('243546');
-//   }
-// }
 
 const String androidWidgetName = 'NewAppWidget';
 
@@ -58,14 +60,34 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-      body: Center(
-        child: Text('Hello World!'),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('Hello World!'),
+          ],
+        ),
       ),
       // floatingActionButton: FloatingActionButton(onPressed: () {
       //   update('123456');
       // })),
     ));
   }
+
+  // static Future<void> updateWidget() async {
+  //   if (Platform.isIOS) {
+  //     try {
+  //       final Map<String, dynamic> mapCode = await fetchSecretText();
+  //       var sol = await _channel
+  //           .invokeMethod('updateWidget', {'message': mapCode['code']});
+  //       print(sol);
+  //     } on PlatformException catch (e) {
+  //       print("Error al actualizar el widget: ${e.message}");
+  //     }
+  //   }
+  // }
 }
 
 // void update(String code) {

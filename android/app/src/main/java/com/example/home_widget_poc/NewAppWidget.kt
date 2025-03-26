@@ -80,20 +80,9 @@ class NewAppWidget : AppWidgetProvider() {
                             Log.e("NewAppWidget", "❌ Método no implementado en Flutter")
                         }
                     })
-                }else{
+                }else {
                     updateAppWidget(context, AppWidgetManager.getInstance(context))
                 }
-                // Obtener el texto desde HomeWidget
-    //            val secretText = widgetData.getString("text_secret", null) ?: "******"
-    //
-    //            val appWidgetManager = AppWidgetManager.getInstance(context)
-    //            val appWidgetIds = appWidgetManager.getAppWidgetIds(
-    //                ComponentName(context, NewAppWidget::class.java)
-    //            )
-    //
-    //            for (appWidgetId in appWidgetIds) {
-    //                updateAppWidget(context, appWidgetManager, appWidgetId, secretText)
-    //            }
             }
 
             ACTION_UPDATE_TIMER -> {
